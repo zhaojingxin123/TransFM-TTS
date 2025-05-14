@@ -1,0 +1,35 @@
+_target_: matcha.data.text_mel_datamodule.TextMelDataModule
+name: ljspeech
+# 计算均值可能需要用到这里的路径
+# 后面想用训好的mel，sequence，这个版本还不行
+# /home/zjx/Matcha-TTS/data/LJSpeech-1.1/train_no_parentheses.txt
+# /home/zjx/Matcha-TTS/data/LJSpeech-1.1/val.txt
+# /home/zjx/Matcha-TTS/data/aishell3/train_match.txt
+# train_filelist_path: /home/zjx/Matcha-TTS/data/LJSpeech-1.1/train_no_parentheses.txt
+train_filelist_path: /home/zjx/Matcha-TTS/data/aishell3/train_match.txt
+# valid_filelist_path: /home/zjx/Matcha-TTS/data/LJSpeech-1.1/val.txt
+valid_filelist_path: /home/zjx/Matcha-TTS/data/aishell3/valid_match.txt
+# 数据加载的batch_size>=2,要不然验证过不去
+batch_size: 32
+num_workers: 16
+pin_memory: True
+cleaners: [english_cleaners2]
+add_blank: True
+# n_spks: 174
+n_spks: 1
+n_fft: 1024
+n_feats: 80
+sample_rate: 22050
+hop_length: 256
+win_length: 1024
+f_min: 0
+f_max: 8000
+data_statistics:  # Computed for ljspeech dataset
+# {'mel_mean': -6.699476718902588, 'mel_std': 2.4512598514556885}    
+  mel_mean: -5.517477
+  mel_std: 2.064375
+# 下面是ljspeech
+  # mel_mean: -5.517477035522461
+  # mel_std: 2.064375162124634
+seed: ${seed}
+load_durations: false
