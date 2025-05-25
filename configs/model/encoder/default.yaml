@@ -1,0 +1,24 @@
+encoder_type: RoPE Encoder
+encoder_params:
+  n_feats: ${model.n_feats}
+  # 这里的n_channels是什么？
+  n_channels: 192
+# 这里是什么呀？
+  filter_channels: 768
+  filter_channels_dp: 256
+
+  n_heads: 2
+  n_layers: 6
+
+  kernel_size: 3
+  p_dropout: 0.1
+  # 说话人的emb维度
+  spk_emb_dim: 64
+# 这里不知道要不要改成174
+  n_spks: 1
+  prenet: true
+
+duration_predictor_params:
+  filter_channels_dp: ${model.encoder.encoder_params.filter_channels_dp}
+  kernel_size: 3
+  p_dropout: ${model.encoder.encoder_params.p_dropout}
